@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cllwve4cfu0wq"]
+
+[ext_resource type="PackedScene" uid="uid://dqlhcj34nj52k" path="res://Art/Effects/fireball.tscn" id="1_hgi7o"]
+[ext_resource type="Script" uid="uid://de71nlyjeo7mv" path="res://Objects/fireball.gd" id="1_kscoi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hgi7o"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hgi7o"]
+radius = 4.0
+
+[node name="Fireball" type="RigidBody2D" unique_id=1755452832]
+modulate = Color(1, 0.7887894, 0.5281222, 1)
+collision_layer = 2
+collision_mask = 5
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_hgi7o")
+gravity_scale = 0.001
+contact_monitor = true
+max_contacts_reported = 100
+linear_velocity = Vector2(15, 15)
+script = ExtResource("1_kscoi")
+
+[node name="Fireball" parent="." unique_id=1569030859 instance=ExtResource("1_hgi7o")]
+position = Vector2(-1.1920929e-07, 1.0000001)
+scale = Vector2(0.2, 0.2)
+amount = 25
+
+[node name="Circle" parent="Fireball" index="0" unique_id=1798768470]
+position = Vector2(-2.6226044e-05, -4.999999)
+
+[node name="LeftSparks" parent="Fireball" index="1" unique_id=532122729]
+position = Vector2(-10, 20.000002)
+speed_scale = 2.0
+
+[node name="LeftSparks2" parent="Fireball" index="2" unique_id=303044415]
+position = Vector2(10.000001, 20)
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=533370091]
+visible = false
+shape = SubResource("CircleShape2D_hgi7o")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="Fireball"]

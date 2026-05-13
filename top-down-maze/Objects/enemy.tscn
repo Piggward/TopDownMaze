@@ -1,0 +1,342 @@
+[gd_scene format=3 uid="uid://dg8rssu0ac3uv"]
+
+[ext_resource type="Script" uid="uid://blqtbmg0c1wce" path="res://Objects/enemy.gd" id="1_dnm5c"]
+[ext_resource type="Texture2D" uid="uid://siyynpjwcjuf" path="res://Art/Minotaur/MinotaurWalk.png" id="2_cqgh6"]
+[ext_resource type="Texture2D" uid="uid://du5jrjn3wsf6b" path="res://Art/Minotaur/MinotaurDie.png" id="2_lc1h8"]
+[ext_resource type="PackedScene" uid="uid://c1ul41txpfrar" path="res://detection_area.tscn" id="3_d3xos"]
+[ext_resource type="Script" uid="uid://cbpct5anigsvo" path="res://backstab_area.gd" id="4_cqgh6"]
+[ext_resource type="Texture2D" uid="uid://di0c8x4orsgb5" path="res://Art/Misc/plain-dagger.png" id="4_yfe2k"]
+[ext_resource type="Script" uid="uid://bcx64n5achi63" path="res://Objects/scale_tween.gd" id="5_756aq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnm5c"]
+size = Vector2(7, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfe2k"]
+size = Vector2(7, 6)
+
+[sub_resource type="Animation" id="Animation_lc1h8"]
+resource_name = "Kill"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlainDagger:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 0.4204483, 3.4822013),
+"update": 0,
+"values": [Vector2(0, -10), Vector2(0, -20), Vector2(0, -3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlainDagger:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 0.34151012),
+"update": 0,
+"values": [0.0, 0.7853981633974483]
+}
+
+[sub_resource type="Animation" id="Animation_a7q3k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlainDagger:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlainDagger:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gmmfk"]
+_data = {
+&"Kill": SubResource("Animation_lc1h8"),
+&"RESET": SubResource("Animation_a7q3k")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5sbb"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g43p"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeivt"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6pur"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xgl8"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2va7j"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32fc8"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii1d2"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oak1a"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvv27"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru5w7"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_du785"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0rn5"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifl3v"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4po4b"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywhtk"]
+atlas = ExtResource("2_lc1h8")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lc1h8"]
+atlas = ExtResource("2_cqgh6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7q3k"]
+atlas = ExtResource("2_cqgh6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmmfk"]
+atlas = ExtResource("2_cqgh6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebisp"]
+atlas = ExtResource("2_cqgh6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_205hv"]
+atlas = ExtResource("2_cqgh6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tco3"]
+atlas = ExtResource("2_cqgh6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d3xos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5sbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g43p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeivt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6pur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xgl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2va7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32fc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii1d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oak1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvv27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru5w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_du785")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0rn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifl3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4po4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywhtk")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lc1h8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7q3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmmfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebisp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_205hv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tco3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d3xos"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_d3xos"]
+offsets = PackedFloat32Array(0, 0.19771864)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yfe2k"]
+gradient = SubResource("Gradient_d3xos")
+fill_from = Vector2(0.6111111, 0.42307693)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3xos"]
+size = Vector2(8, 8)
+
+[node name="Enemy" type="Area2D" unique_id=47530893]
+script = ExtResource("1_dnm5c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=225415831]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_dnm5c")
+
+[node name="BackstabArea" type="Area2D" parent="." unique_id=726957525]
+collision_layer = 32
+collision_mask = 96
+script = ExtResource("4_cqgh6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackstabArea" unique_id=61048411]
+position = Vector2(-3.5, 0)
+shape = SubResource("RectangleShape2D_yfe2k")
+
+[node name="PlainDagger" type="Sprite2D" parent="BackstabArea" unique_id=977420326]
+visible = false
+modulate = Color(1.169548, 0.7547807, 0.57123643, 1)
+position = Vector2(0, -10)
+scale = Vector2(0.008444021, 0.008444021)
+texture = ExtResource("4_yfe2k")
+script = ExtResource("5_756aq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackstabArea" unique_id=38474109]
+libraries/ = SubResource("AnimationLibrary_gmmfk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=554871433]
+modulate = Color(1.9754877, 1.9754877, 1.9754877, 1)
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_d3xos")
+animation = &"death"
+autoplay = "default"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1137555168]
+visible = false
+material = SubResource("CanvasItemMaterial_d3xos")
+offset_left = -93.0
+offset_top = -34.0
+offset_right = 92.0
+offset_bottom = 6.0
+text = "searching"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LightRotator" type="Node2D" parent="." unique_id=2139145590]
+
+[node name="PointLight2D" type="PointLight2D" parent="LightRotator" unique_id=1082935285]
+position = Vector2(4, 0)
+rotation = -2.3498366
+color = Color(0.6807044, 0, 0, 1)
+energy = 1.5
+shadow_enabled = true
+shadow_item_cull_mask = 17
+texture = SubResource("GradientTexture2D_yfe2k")
+offset = Vector2(-32, 32)
+height = 15.0
+
+[node name="DetectionArea" parent="LightRotator" unique_id=1568310758 instance=ExtResource("3_d3xos")]
+
+[node name="CollisionPolygon2D" parent="LightRotator/DetectionArea" index="0" unique_id=1911401436]
+polygon = PackedVector2Array(4, 0, 37, -32, 37, 32)
+
+[node name="RayCast1" parent="LightRotator/DetectionArea" index="1" unique_id=1481978947]
+position = Vector2(4, 0)
+target_position = Vector2(50, 0)
+
+[node name="RayCast2" parent="LightRotator/DetectionArea" index="2" unique_id=1918920125]
+position = Vector2(4, 0)
+target_position = Vector2(50, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightRotator/DetectionArea" unique_id=1290719707]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_d3xos")
+
+[node name="SearchTimer" type="Timer" parent="." unique_id=24167816]
+wait_time = 2.5
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=353141378]
+
+[connection signal="area_entered" from="BackstabArea" to="BackstabArea" method="_on_area_entered"]
+[connection signal="area_exited" from="BackstabArea" to="BackstabArea" method="_on_area_exited"]
+[connection signal="body_entered" from="BackstabArea" to="BackstabArea" method="_on_body_entered"]
+[connection signal="body_exited" from="BackstabArea" to="BackstabArea" method="_on_body_exited"]
+
+[editable path="LightRotator/DetectionArea"]

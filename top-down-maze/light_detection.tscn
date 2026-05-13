@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://isfr6ywdc4id"]
+
+[ext_resource type="Script" uid="uid://s4co6axxyybb" path="res://test_light_detection.gd" id="1_22t4o"]
+[ext_resource type="PackedScene" uid="uid://c1ul41txpfrar" path="res://detection_area.tscn" id="2_8mo4q"]
+[ext_resource type="PackedScene" uid="uid://ccc5wlyaxafpg" path="res://player.tscn" id="4_8mo4q"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v0r01"]
+polygon = PackedVector2Array(453, 220, 515, 219, 493, 355, 424, 340)
+
+[sub_resource type="Gradient" id="Gradient_8mo4q"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_onh4h"]
+gradient = SubResource("Gradient_8mo4q")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_22t4o"]
+light_mode = 1
+
+[node name="Node2D" type="Node2D" unique_id=572801128]
+script = ExtResource("1_22t4o")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=307917117]
+color = Color(0.50928617, 0.50928617, 0.50928617, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2052640593]
+polygon = PackedVector2Array(-148, -102, 1410, -111, 1261, 846, -106, 790)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=2057583200]
+position = Vector2(26, -11)
+occluder = SubResource("OccluderPolygon2D_v0r01")
+
+[node name="Area2D" type="Area2D" parent="LightOccluder2D" unique_id=1870197112]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LightOccluder2D/Area2D" unique_id=1636033982]
+polygon = PackedVector2Array(453, 222, 514, 220, 493, 355, 425, 340)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1866185765]
+position = Vector2(196, 235)
+rotation = -1.975461
+scale = Vector2(6.4379697, 8.211532)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_onh4h")
+offset = Vector2(-32, 32)
+
+[node name="DetectionArea" parent="PointLight2D" unique_id=1568310758 instance=ExtResource("2_8mo4q")]
+position = Vector2(45.540348, -10.673767)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1800481400]
+material = SubResource("CanvasItemMaterial_22t4o")
+clip_contents = false
+offset_left = 57.0
+offset_top = 189.0
+offset_right = 345.0
+offset_bottom = 229.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+text = "[color=red] hello [/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterBody2D" parent="." unique_id=379665007 instance=ExtResource("4_8mo4q")]
+position = Vector2(410, 387)

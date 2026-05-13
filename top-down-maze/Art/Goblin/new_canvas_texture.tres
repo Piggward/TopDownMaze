@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://dkkdb41fd8kle"]
+
+[ext_resource type="Texture2D" uid="uid://44jtne2xph7g" path="res://Art/Goblin/GoblinWalk.png" id="1_oyl6u"]
+[ext_resource type="Texture2D" uid="uid://byw8cqmvaom5j" path="res://Art/Goblin/GoblinWalk_n.png" id="2_7swmb"]
+
+[resource]
+diffuse_texture = ExtResource("1_oyl6u")
+normal_texture = ExtResource("2_7swmb")

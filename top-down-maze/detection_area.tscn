@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c1ul41txpfrar"]
+
+[ext_resource type="Script" uid="uid://bhhe12tb5udgb" path="res://detection_area.gd" id="1_4fnf5"]
+[ext_resource type="Script" uid="uid://bp1udu2a568jg" path="res://vision_detector_raycast.gd" id="2_glx1x"]
+
+[node name="DetectionArea" type="Area2D" unique_id=1568310758]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_4fnf5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1911401436]
+
+[node name="RayCast1" type="RayCast2D" parent="." unique_id=1481978947]
+collision_mask = 21
+collide_with_areas = true
+script = ExtResource("2_glx1x")
+
+[node name="RayCast2" type="RayCast2D" parent="." unique_id=1918920125]
+collision_mask = 21
+collide_with_areas = true
+script = ExtResource("2_glx1x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

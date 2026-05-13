@@ -1,0 +1,186 @@
+[gd_scene format=3 uid="uid://ccc5wlyaxafpg"]
+
+[ext_resource type="Script" uid="uid://bwx5mrpvvkpjc" path="res://character_body_2d.gd" id="1_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://dkkdb41fd8kle" path="res://Art/Goblin/new_canvas_texture.tres" id="2_hqtel"]
+[ext_resource type="Script" uid="uid://dybx52celg4cv" path="res://camera_2d.gd" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://b7dcumrfnxixh" path="res://Art/Particles/circle_05.png" id="3_sweqy"]
+[ext_resource type="Texture2D" uid="uid://ctu7m3xxknqyq" path="res://Art/Particles/star_04.png" id="5_sweqy"]
+[ext_resource type="Script" uid="uid://ckco8p7y5ga7g" path="res://backstab_detector.gd" id="6_2hs0m"]
+
+[sub_resource type="Gradient" id="Gradient_vbegm"]
+offsets = PackedFloat32Array(0.22243346, 0.5475285, 0.7243346, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.99116415, 0.99116427, 0.99116415, 0.4429968, 0.9109963, 0.91099644, 0.9109963, 0.40716612, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ehkex"]
+gradient = SubResource("Gradient_vbegm")
+width = 200
+height = 200
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g14j6"]
+gradient = SubResource("Gradient_vbegm")
+width = 800
+height = 800
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hqtel"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00tp4"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77dp3"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tkv4"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0m0f1"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b0q6j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00tp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77dp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tkv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0m0f1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vbegm"]
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_xersf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.44488186, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_00tp4"]
+curve = SubResource("Curve_xersf")
+
+[sub_resource type="Curve" id="Curve_77dp3"]
+_data = [Vector2(0.50590545, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5tkv4"]
+curve = SubResource("Curve_77dp3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0m0f1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 100, 1)
+spread = 180.0
+initial_velocity_max = 12.82
+orbit_velocity_min = -0.009999906
+orbit_velocity_max = 0.010000096
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.01
+scale_curve = SubResource("CurveTexture_5tkv4")
+color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+alpha_curve = SubResource("CurveTexture_00tp4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbegm"]
+size = Vector2(7, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sweqy"]
+size = Vector2(6, 4)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=379665007 groups=["player"]]
+collision_layer = 4
+collision_mask = 39
+script = ExtResource("1_i3pqv")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=307576849]
+color = Color(0.68235296, 0.78431374, 0.2901961, 1)
+energy = 0.1
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_ehkex")
+texture_scale = 0.5
+height = 5.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="." unique_id=1048764118]
+color = Color(0.68235296, 0.78431374, 0.2901961, 1)
+energy = 0.2
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_g14j6")
+texture_scale = 0.5
+height = 15.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1552427679 groups=["camera"]]
+zoom = Vector2(5, 5)
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("2_sweqy")
+decay = 0.87
+max_offset = Vector2(15, 10)
+noise = SubResource("FastNoiseLite_hqtel")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1232116023]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_b0q6j")
+autoplay = "default"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1920072680]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_vbegm")
+emitting = false
+amount = 65
+texture = ExtResource("3_sweqy")
+lifetime = 10.0
+preprocess = 10.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_0m0f1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=883680081]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_vbegm")
+
+[node name="Ghost" type="Sprite2D" parent="." unique_id=1761971647]
+visible = false
+modulate = Color(1.6399239, 2.454227, 2.454227, 1)
+position = Vector2(-4.7683716e-07, 4.7683716e-07)
+scale = Vector2(0.032620754, 0.032620754)
+texture = ExtResource("5_sweqy")
+
+[node name="GhostTimer" type="Timer" parent="." unique_id=258999417]
+wait_time = 2.5
+
+[node name="GhostReminder" type="Sprite2D" parent="." unique_id=1669976885]
+modulate = Color(1.0774336, 1.6197081, 1.6197081, 1)
+position = Vector2(3.9999993, -3.9999995)
+scale = Vector2(0.015039195, 0.015039195)
+texture = ExtResource("5_sweqy")
+
+[node name="BackstabDetector" type="Area2D" parent="." unique_id=293933263]
+collision_layer = 64
+collision_mask = 32
+script = ExtResource("6_2hs0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackstabDetector" unique_id=1569296143]
+position = Vector2(6, 0)
+shape = SubResource("RectangleShape2D_sweqy")
+
+[connection signal="area_entered" from="BackstabDetector" to="." method="_on_backstab_detector_area_entered"]

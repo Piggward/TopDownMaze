@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://c0fatk8580ejy"
+path="res://.godot/imported/wall_n.png-c21fe407daf50370cf99ba338ddf80f4.image"
+
+[deps]
+
+source_file="res://Art/TileSet/wall_n.png"
+dest_files=["res://.godot/imported/wall_n.png-c21fe407daf50370cf99ba338ddf80f4.image"]
+
+[params]
+

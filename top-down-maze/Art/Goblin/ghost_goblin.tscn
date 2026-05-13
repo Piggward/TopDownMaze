@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://jy7gor2lg2vd"]
+
+[ext_resource type="Texture2D" uid="uid://44jtne2xph7g" path="res://Art/Goblin/GoblinWalk.png" id="1_e7hfx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3122"]
+atlas = ExtResource("1_e7hfx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_efyo2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3122")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" unique_id=599943643]
+modulate = Color(0, 2.9289904, 2.9289904, 1)
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_efyo2")

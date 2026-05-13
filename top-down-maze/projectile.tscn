@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://hjp5gd5pegtj"]
+
+[ext_resource type="Texture2D" uid="uid://u4ryfpw01vuq" path="res://Art/Particles/star_01.png" id="1_a85iw"]
+
+[node name="Node2D" type="Node2D" unique_id=1886549619]
+modulate = Color(0.5060828, 0.7007102, 1, 1)
+
+[node name="Star01" type="Sprite2D" parent="." unique_id=166033558]
+modulate = Color(1.4954206, 1.4954206, 1.4954206, 1)
+texture_filter = 1
+position = Vector2(0, 1.1920929e-07)
+scale = Vector2(0.026786447, 0.024984682)
+texture = ExtResource("1_a85iw")
