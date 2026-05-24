@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ckl3sd8yra44u"]
+
+[ext_resource type="PackedScene" uid="uid://dg8rssu0ac3uv" path="res://Objects/enemy.tscn" id="1_agftt"]
+[ext_resource type="PackedScene" uid="uid://bwslb5cwosvud" path="res://Tilemap/floor_tiles.tscn" id="1_duwt2"]
+[ext_resource type="PackedScene" uid="uid://ds5maanr8coll" path="res://Tilemap/wall_tiles.tscn" id="2_lk2nn"]
+
+[node name="Node" type="Node" unique_id=67943887]
+
+[node name="TileMapLayer" parent="." unique_id=433484697 instance=ExtResource("1_duwt2")]
+
+[node name="WallTiles" parent="." unique_id=973975757 instance=ExtResource("2_lk2nn")]
+
+[node name="Enemy" parent="." unique_id=47530893 instance=ExtResource("1_agftt")]
+position = Vector2(28, 16)
+stationary = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=208046375]
+color = Color(0.31431612, 0.31431612, 0.3143161, 1)

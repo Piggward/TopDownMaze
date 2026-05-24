@@ -17,10 +17,9 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/mode=3
+window/size/mode=2
 window/size/always_on_top=true
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
 
 [input]
 
@@ -80,4 +79,7 @@ right={
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+shading/overrides/force_vertex_shading=true
 viewport/hdr_2d=true
+2d/sdf/oversize=3
+2d/sdf/scale=0

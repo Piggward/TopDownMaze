@@ -2,11 +2,17 @@
 
 [ext_resource type="Script" uid="uid://blqtbmg0c1wce" path="res://Objects/enemy.gd" id="1_dnm5c"]
 [ext_resource type="Texture2D" uid="uid://siyynpjwcjuf" path="res://Art/Minotaur/MinotaurWalk.png" id="2_cqgh6"]
+[ext_resource type="Texture2D" uid="uid://b7ilqlr56cks8" path="res://Art/TileSet/floor_100_n.png" id="2_gmmfk"]
 [ext_resource type="Texture2D" uid="uid://du5jrjn3wsf6b" path="res://Art/Minotaur/MinotaurDie.png" id="2_lc1h8"]
 [ext_resource type="PackedScene" uid="uid://c1ul41txpfrar" path="res://detection_area.tscn" id="3_d3xos"]
 [ext_resource type="Script" uid="uid://cbpct5anigsvo" path="res://backstab_area.gd" id="4_cqgh6"]
 [ext_resource type="Texture2D" uid="uid://di0c8x4orsgb5" path="res://Art/Misc/plain-dagger.png" id="4_yfe2k"]
 [ext_resource type="Script" uid="uid://bcx64n5achi63" path="res://Objects/scale_tween.gd" id="5_756aq"]
+[ext_resource type="Texture2D" uid="uid://b3vb6b8q60uvj" path="res://Art/Particles/cone_e_blur.png" id="6_gmmfk"]
+[ext_resource type="Shader" uid="uid://b10mucfs6h7cr" path="res://wefwe.gdshader" id="12_1tco3"]
+[ext_resource type="Script" uid="uid://dkbpo64gfo4fw" path="res://Objects/los_polygon.gd" id="13_v5sbb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gmmfk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnm5c"]
 size = Vector2(7, 6)
@@ -73,6 +79,15 @@ _data = {
 &"Kill": SubResource("Animation_lc1h8"),
 &"RESET": SubResource("Animation_a7q3k")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3xos"]
+size = Vector2(8, 8)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1tco3"]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ebisp"]
+light_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v5sbb"]
 atlas = ExtResource("2_lc1h8")
@@ -244,18 +259,27 @@ animations = [{
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d3xos"]
 light_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_d3xos"]
-offsets = PackedFloat32Array(0, 0.19771864)
+[sub_resource type="ViewportTexture" id="ViewportTexture_5tkv4"]
+viewport_path = NodePath("LosMask")
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yfe2k"]
-gradient = SubResource("Gradient_d3xos")
-fill_from = Vector2(0.6111111, 0.42307693)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3xos"]
-size = Vector2(8, 8)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0q6j"]
+resource_local_to_scene = true
+shader = ExtResource("12_1tco3")
+shader_parameter/vision_tex = SubResource("ViewportTexture_5tkv4")
+shader_parameter/screen_size = Vector2(1152, 648)
+shader_parameter/color1 = Color(0.36321992, 0.43564504, 0.44772404, 1)
+shader_parameter/is_visible = false
 
 [node name="Enemy" type="Area2D" unique_id=47530893]
 script = ExtResource("1_dnm5c")
+stationary = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=82755173]
+visible = false
+material = SubResource("CanvasItemMaterial_gmmfk")
+position = Vector2(2.0000038, 9.536743e-07)
+scale = Vector2(1.48, 1.14)
+texture = ExtResource("2_gmmfk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=225415831]
 position = Vector2(-0.5, 0)
@@ -281,9 +305,48 @@ script = ExtResource("5_756aq")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BackstabArea" unique_id=38474109]
 libraries/ = SubResource("AnimationLibrary_gmmfk")
 
+[node name="LightRotator" type="Node2D" parent="." unique_id=2139145590]
+
+[node name="DetectionArea" parent="LightRotator" unique_id=1568310758 instance=ExtResource("3_d3xos")]
+
+[node name="CollisionPolygon2D" parent="LightRotator/DetectionArea" index="0" unique_id=1911401436]
+polygon = PackedVector2Array(4, 0, 7, -1, 58, -14, 59, 15, 7, 1)
+
+[node name="RayCast1" parent="LightRotator/DetectionArea" index="1" unique_id=1481978947]
+position = Vector2(4, 0)
+target_position = Vector2(50, 0)
+
+[node name="RayCast2" parent="LightRotator/DetectionArea" index="2" unique_id=1918920125]
+position = Vector2(4, 0)
+target_position = Vector2(50, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightRotator/DetectionArea" unique_id=1290719707]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_d3xos")
+
+[node name="ConeComposedDNoise" type="Sprite2D" parent="LightRotator" unique_id=372096137]
+modulate = Color(1.353256, 0.23303752, 0.23303752, 1)
+material = SubResource("CanvasItemMaterial_1tco3")
+position = Vector2(4.071781, -2.9429768e-07)
+rotation = 1.5707964
+scale = Vector2(0.07415707, 0.106000535)
+texture = ExtResource("6_gmmfk")
+offset = Vector2(0, -250)
+
+[node name="PointLight2D" type="PointLight2D" parent="LightRotator" unique_id=2054813221]
+visible = false
+rotation = 1.5755928
+scale = Vector2(0.09525665, 0.09525665)
+color = Color(1, 0, 0, 1)
+shadow_enabled = true
+shadow_item_cull_mask = 17
+texture = ExtResource("6_gmmfk")
+offset = Vector2(0, -250)
+height = 15.0
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=554871433]
-modulate = Color(1.9754877, 1.9754877, 1.9754877, 1)
 texture_filter = 1
+material = SubResource("CanvasItemMaterial_ebisp")
 sprite_frames = SubResource("SpriteFrames_d3xos")
 animation = &"death"
 autoplay = "default"
@@ -299,40 +362,22 @@ text = "searching"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LightRotator" type="Node2D" parent="." unique_id=2139145590]
-
-[node name="PointLight2D" type="PointLight2D" parent="LightRotator" unique_id=1082935285]
-position = Vector2(4, 0)
-rotation = -2.3498366
-color = Color(0.6807044, 0, 0, 1)
-energy = 1.5
-shadow_enabled = true
-shadow_item_cull_mask = 17
-texture = SubResource("GradientTexture2D_yfe2k")
-offset = Vector2(-32, 32)
-height = 15.0
-
-[node name="DetectionArea" parent="LightRotator" unique_id=1568310758 instance=ExtResource("3_d3xos")]
-
-[node name="CollisionPolygon2D" parent="LightRotator/DetectionArea" index="0" unique_id=1911401436]
-polygon = PackedVector2Array(4, 0, 37, -32, 37, 32)
-
-[node name="RayCast1" parent="LightRotator/DetectionArea" index="1" unique_id=1481978947]
-position = Vector2(4, 0)
-target_position = Vector2(50, 0)
-
-[node name="RayCast2" parent="LightRotator/DetectionArea" index="2" unique_id=1918920125]
-position = Vector2(4, 0)
-target_position = Vector2(50, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LightRotator/DetectionArea" unique_id=1290719707]
-position = Vector2(2, 0)
-shape = SubResource("RectangleShape2D_d3xos")
-
 [node name="SearchTimer" type="Timer" parent="." unique_id=24167816]
 wait_time = 2.5
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=353141378]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1016801049]
+visible = false
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=617844032]
+visible = false
+light_mask = 0
+material = SubResource("ShaderMaterial_b0q6j")
+position = Vector2(23, 0)
+color = Color(0.8474744, 0.84747446, 0.84747446, 1)
+polygon = PackedVector2Array(-8, -9, -1, -11, 22, -19, 32, -12, 34, 11, 26, 19, 17, 18, -2, 11, -21, 4, -21, -3, -12, -8)
+script = ExtResource("13_v5sbb")
 
 [connection signal="area_entered" from="BackstabArea" to="BackstabArea" method="_on_area_entered"]
 [connection signal="area_exited" from="BackstabArea" to="BackstabArea" method="_on_area_exited"]

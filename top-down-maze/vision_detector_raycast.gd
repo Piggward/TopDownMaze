@@ -12,7 +12,7 @@ func _process(delta):
 	var angle = global_position.angle_to_point(target.global_position)
 	var angle_offset = global_position.angle_to_point(target.global_position - Vector2(size_offset / 2, 0).rotated(angle - 90))
 	global_rotation = angle_offset
-	self.rotation = clamp(rotation, deg_to_rad(-45), deg_to_rad(45))
+	#self.rotation = clamp(rotation, deg_to_rad(-45), deg_to_rad(45))
 
 func activate(new_target: Node2D, size: float):
 	target = new_target

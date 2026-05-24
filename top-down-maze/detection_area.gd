@@ -24,6 +24,7 @@ func check_collision(ray: RayCast2D, target: Node2D):
 	return false
 
 func _on_body_entered(body):
+	print("body neter")
 	if target == null:
 		target = body
 		ray_cast_1.activate(target, 5.0)
@@ -33,6 +34,7 @@ func _on_body_entered(body):
 
 
 func _on_body_exited(body):
+	print("body exit")
 	if body == target:
 		target_in_sight = false
 		target = null

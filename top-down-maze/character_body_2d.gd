@@ -7,21 +7,28 @@ const FIREBALL = preload("uid://cllwve4cfu0wq")
 
 @export var speed := 50.0
 @export var accelleration := 350
+@export var linked_position_node: Node2D
+
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 @onready var camera_2d = $Camera2D
 @onready var ghost = $Ghost
 @onready var ghost_reminder = $GhostReminder
 @onready var ghost_timer = $GhostTimer
+@onready var backstab_detector = $BackstabDetector
 
 var state = "running"
 var cd = false
 var cd_time = 0.45
+var last_dir = 1
 
 #ghost
 var MAX_TETHER = 40
 var tp_cd = false
 
 func _physics_process(delta):
+	if linked_position_node != null:
+		linked_position_node.position = self.position
 	var input = Input.get_axis("left", "right")
 	var input2 = Input.get_axis("up", "down")
 	var direction = Vector2(input, input2).normalized()
@@ -46,8 +53,18 @@ func _physics_process(delta):
 			get_tree().root.add_child(smoke)
 			smoke.global_position = self.global_position
 			self.position += ghost.position
-	
+	if velocity.x != 0:
+		flip_children(sign(velocity.x))
+	velocity = velocity.round()
 	move_and_slide()
+
+func flip_children(dir: int):
+	if dir == last_dir:
+		return
+	last_dir = dir
+	animated_sprite_2d.scale.x *= -1
+	backstab_detector.scale.x *= -1
+	ghost_reminder.scale.x *= -1
 
 func set_tp_cd():
 	tp_cd = true

@@ -12,6 +12,8 @@ extends Area2D
 @onready var shoot_timer = $ShootTimer
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
+signal state_changed(new_state)
+
 const FIREBALL = preload("uid://cllwve4cfu0wq")
 
 var state = "patrol"
@@ -122,3 +124,4 @@ func switch_state(new_state):
 		"station": rich_text_label.text = "station"; self.scale.x = og_scale; light_rotator.look_at(self.position + Vector2(og_scale, 0))
 		
 	state = new_state
+	state_changed.emit(new_state)
