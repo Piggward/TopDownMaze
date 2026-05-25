@@ -1,4 +1,4 @@
-shader_type canvas_item;
+ader_type canvas_item;
 
 uniform sampler2D mask_texture;
 

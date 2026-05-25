@@ -18,8 +18,8 @@ void fragment() {
 }
 
 void light() {
-	if (LIGHT_COLOR.b != 0.0)
-	{
-		LIGHT = vec4(COLOR.rgb * LIGHT_COLOR.rgb * LIGHT_ENERGY, LIGHT_COLOR.a);	
-	}
+	//if (LIGHT_COLOR.b != 0.0)
+	//{
+		//LIGHT = vec4(COLOR.rgb * LIGHT_COLOR.rgb * LIGHT_ENERGY, LIGHT_COLOR.a);
+	//}
 }

@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://ccc5wlyaxafpg"]
 
-[ext_resource type="Script" uid="uid://bwx5mrpvvkpjc" path="res://character_body_2d.gd" id="1_i3pqv"]
+[ext_resource type="Script" uid="uid://bwx5mrpvvkpjc" path="res://Systems/GamePlay/Player/character_body_2d.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://dkkdb41fd8kle" path="res://Art/Goblin/new_canvas_texture.tres" id="2_hqtel"]
-[ext_resource type="Script" uid="uid://dybx52celg4cv" path="res://camera_2d.gd" id="2_sweqy"]
+[ext_resource type="Script" uid="uid://dybx52celg4cv" path="res://Systems/Camera/camera_2d.gd" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://b7dcumrfnxixh" path="res://Art/Particles/circle_05.png" id="3_sweqy"]
 [ext_resource type="Texture2D" uid="uid://ctu7m3xxknqyq" path="res://Art/Particles/star_04.png" id="5_sweqy"]
-[ext_resource type="Script" uid="uid://ckco8p7y5ga7g" path="res://backstab_detector.gd" id="6_2hs0m"]
+[ext_resource type="Script" uid="uid://ckco8p7y5ga7g" path="res://Systems/GamePlay/Backstab/backstab_detector.gd" id="6_2hs0m"]
 
 [sub_resource type="Gradient" id="Gradient_vbegm"]
 offsets = PackedFloat32Array(0.22243346, 0.5475285, 0.7243346, 1)

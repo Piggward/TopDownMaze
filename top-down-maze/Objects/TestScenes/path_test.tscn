@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5jnvufkyqv26"]
 
-[ext_resource type="PackedScene" uid="uid://dg8rssu0ac3uv" path="res://Objects/enemy.tscn" id="1_k8us2"]
+[ext_resource type="PackedScene" uid="uid://dg8rssu0ac3uv" path="res://Objects/Enemy/enemy.tscn" id="1_yoq8g"]
 
 [sub_resource type="Curve2D" id="Curve2D_5tnls"]
 _data = {
@@ -10,8 +10,9 @@ point_count = 2
 
 [node name="Node2D" type="Node2D" unique_id=1373877858]
 
-[node name="Enemy" parent="." unique_id=47530893 node_paths=PackedStringArray("path_follow") instance=ExtResource("1_k8us2")]
+[node name="Enemy" parent="." unique_id=47530893 node_paths=PackedStringArray("path_follow") instance=ExtResource("1_yoq8g")]
 path_follow = NodePath("../Path2D/PathFollow2D")
+stationary = false
 
 [node name="Path2D" type="Path2D" parent="." unique_id=2063395840]
 curve = SubResource("Curve2D_5tnls")

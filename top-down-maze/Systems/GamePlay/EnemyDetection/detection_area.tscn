@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1ul41txpfrar"]
 
-[ext_resource type="Script" uid="uid://bhhe12tb5udgb" path="res://detection_area.gd" id="1_4fnf5"]
-[ext_resource type="Script" uid="uid://bp1udu2a568jg" path="res://vision_detector_raycast.gd" id="2_glx1x"]
+[ext_resource type="Script" uid="uid://bhhe12tb5udgb" path="res://Systems/GamePlay/EnemyDetection/detection_area.gd" id="1_4fnf5"]
+[ext_resource type="Script" uid="uid://bp1udu2a568jg" path="res://Systems/GamePlay/EnemyDetection/vision_detector_raycast.gd" id="2_glx1x"]
 
 [node name="DetectionArea" type="Area2D" unique_id=1568310758]
 collision_layer = 0

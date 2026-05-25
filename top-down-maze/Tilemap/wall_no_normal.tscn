@@ -1,10 +1,9 @@
-[gd_resource type="TileSet" format=3 uid="uid://blre1mo8w7hjk"]
+[gd_scene format=4 uid="uid://mq1jtxmv4osc"]
 
-[ext_resource type="Texture2D" uid="uid://bc274vnswcddb" path="res://Art/TileSet/Tileset.png" id="1_j25si"]
-[ext_resource type="Texture2D" uid="uid://dswomas4f3j65" path="res://Art/TileSet/Tileset-export_normal_map-export.png" id="2_jrnu7"]
+[ext_resource type="Texture2D" uid="uid://bc274vnswcddb" path="res://Art/TileSet/Tileset.png" id="1_wi06i"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fv718"]
-texture = ExtResource("1_j25si")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ohkbh"]
+texture = ExtResource("1_wi06i")
 texture_region_size = Vector2i(8, 8)
 1:2/0 = 0
 6:2/0 = 0
@@ -214,13 +213,8 @@ closed = false
 cull_mode = 1
 polygon = PackedVector2Array(-4, 4, 0.30457687, 4, 4, 4)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_g14j6"]
-diffuse_texture = ExtResource("1_j25si")
-normal_texture = ExtResource("2_jrnu7")
-texture_filter = 1
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vbegm"]
-texture = SubResource("CanvasTexture_g14j6")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s4guk"]
+texture = ExtResource("1_wi06i")
 texture_region_size = Vector2i(8, 8)
 5:5/0 = 0
 5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
@@ -510,7 +504,7 @@ texture_region_size = Vector2i(8, 8)
 1:10/0 = 0
 2:6/0 = 0
 
-[resource]
+[sub_resource type="TileSet" id="TileSet_2j7oy"]
 tile_size = Vector2i(8, 8)
 occlusion_layer_0/light_mask = 3
 occlusion_layer_0/sdf_collision = true
@@ -527,5 +521,10 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_1/mode = 0
 terrain_set_1/terrain_0/name = "Walls"
 terrain_set_1/terrain_0/color = Color(0.49995556, 0.71932274, 0.25030932, 1)
-sources/3 = SubResource("TileSetAtlasSource_vbegm")
-sources/1 = SubResource("TileSetAtlasSource_fv718")
+sources/3 = SubResource("TileSetAtlasSource_s4guk")
+sources/1 = SubResource("TileSetAtlasSource_ohkbh")
+
+[node name="WallTilesNoNormal" type="TileMapLayer" unique_id=433484697]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAGAAIAAwAEAAsAAAAHAAIAAwAJAAUAAAAIAAIAAwAJAAUAAAAJAAIAAwAJAAUAAAAKAAIAAwAJAAUAAAALAAIAAwAJAAUAAAAMAAIAAwAJAAUAAAANAAIAAwAJAAUAAAAOAAIAAwAJAAUAAAAPAAIAAwAJAAUAAAAQAAIAAwAJAAUAAAARAAIAAwAJAAUAAAASAAIAAwAJAAUAAAATAAIAAwAJAAUAAAAUAAIAAwAJAAUAAAAVAAIAAwAKAAUAAAAVAAMAAwAKAAYAAAAVAAQAAwAKAAYAAAAVAAUAAwAKAAYAAAAVAAYAAwAKAAYAAAAVAAcAAwAKAAYAAAAVAAgAAwAKAAYAAAAVAAkAAwAKAAYAAAAVAAoAAwAKAAsAAAAUAAoAAwAJAAUAAAATAAoAAwAJAAUAAAASAAoAAwAJAAUAAAARAAoAAwAJAAUAAAAQAAoAAwAJAAUAAAAPAAoAAwAJAAUAAAAOAAoAAwAJAAUAAAANAAoAAwAJAAUAAAAMAAoAAwAJAAUAAAALAAoAAwAJAAUAAAAKAAoAAwAJAAUAAAAJAAoAAwAJAAUAAAAIAAoAAwAJAAUAAAAHAAoAAwAJAAUAAAAGAAoAAwAEAAsAAAAGAAsAAwAEAAwAAAAHAAsAAwAJAAYAAAAIAAsAAwAJAAYAAAAJAAsAAwAJAAYAAAAKAAsAAwAJAAYAAAALAAsAAwAJAAYAAAAMAAsAAwAJAAYAAAANAAsAAwAJAAYAAAAOAAsAAwAJAAYAAAAPAAsAAwAJAAYAAAAQAAsAAwAJAAYAAAARAAsAAwAJAAYAAAASAAsAAwAJAAYAAAATAAsAAwAJAAYAAAAUAAsAAwAJAAYAAAAVAAsAAwAKAAwAAAAUAAMAAwAKAAwAAAATAAMAAwAJAAYAAAASAAMAAwAJAAYAAAARAAMAAwAJAAYAAAAQAAMAAwAJAAYAAAAPAAMAAwAJAAYAAAAOAAMAAwAJAAYAAAANAAMAAwAJAAYAAAAMAAMAAwAJAAYAAAALAAMAAwAJAAYAAAAKAAMAAwAJAAYAAAAJAAMAAwAJAAYAAAAIAAMAAwAJAAYAAAAHAAMAAwAJAAYAAAAGAAMAAwAEAAwAAAA=")
+tile_set = SubResource("TileSet_2j7oy")

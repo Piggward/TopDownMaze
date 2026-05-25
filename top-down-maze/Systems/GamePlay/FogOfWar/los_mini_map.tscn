@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dagtslujsy23f"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_77dp3"]
+viewport_path = NodePath("LosMask")
+
+[node name="LoSMiniMap" type="CanvasLayer" unique_id=503995093]
+visible = false
+
+[node name="LosVisualizer" type="TextureRect" parent="." unique_id=955104085]
+offset_left = 17.999998
+offset_top = 20.999998
+offset_right = 1170.0
+offset_bottom = 669.0
+scale = Vector2(0.043049086, 0.043049086)
+texture = SubResource("ViewportTexture_77dp3")

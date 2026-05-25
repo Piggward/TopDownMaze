@@ -1,0 +1,292 @@
+[gd_scene format=4 uid="uid://dtled5fwbb1mw"]
+
+[ext_resource type="PackedScene" uid="uid://bwslb5cwosvud" path="res://Tilemap/floor_tiles.tscn" id="1_g14j6"]
+[ext_resource type="PackedScene" uid="uid://ds5maanr8coll" path="res://Tilemap/wall_tiles.tscn" id="2_xersf"]
+[ext_resource type="PackedScene" uid="uid://dg8rssu0ac3uv" path="res://Objects/Enemy/enemy.tscn" id="3_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://ccc5wlyaxafpg" path="res://Systems/GamePlay/Player/player.tscn" id="4_ppyta"]
+[ext_resource type="Script" uid="uid://cnwgvkdwkaxu6" path="res://Objects/TestScenes/screen_visible_detector.gd" id="5_00tp4"]
+[ext_resource type="Shader" uid="uid://b10mucfs6h7cr" path="res://Shaders/wefwe.gdshader" id="6_77dp3"]
+[ext_resource type="PackedScene" uid="uid://dcg1smef7x1bc" path="res://Systems/GamePlay/FogOfWar/los_mask.tscn" id="7_00tp4"]
+[ext_resource type="PackedScene" uid="uid://c1ul41txpfrar" path="res://Systems/GamePlay/EnemyDetection/detection_area.tscn" id="7_77dp3"]
+[ext_resource type="PackedScene" uid="uid://dagtslujsy23f" path="res://Systems/GamePlay/FogOfWar/los_mini_map.tscn" id="10_5tkv4"]
+[ext_resource type="PackedScene" uid="uid://bp8glb2pg5wp0" path="res://Systems/GamePlay/FogOfWar/dark_scene_subviewport.tscn" id="12_0m0f1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ehkex"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_45l4g"]
+viewport_path = NodePath("LosMask")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4uo0j"]
+resource_local_to_scene = true
+shader = ExtResource("6_77dp3")
+shader_parameter/vision_tex = SubResource("ViewportTexture_45l4g")
+shader_parameter/screen_size = Vector2(1152, 648)
+shader_parameter/color1 = Color(0, 0, 0, 1)
+shader_parameter/is_visible = false
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mhym6"]
+viewport_path = NodePath("DarkSceneSubviewport")
+
+[sub_resource type="Environment" id="Environment_xersf"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_intensity = 0.59
+glow_bloom = 0.25
+glow_blend_mode = 0
+glow_hdr_threshold = 0.61
+glow_hdr_scale = 1.65
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xersf"]
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_g14j6"]
+offsets = PackedFloat32Array(0, 0.33195022, 0.8672199)
+colors = PackedColorArray(1, 0.014553015, 0, 1, 1, 0.5567846, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vbegm"]
+gradient = SubResource("Gradient_g14j6")
+
+[sub_resource type="Curve" id="Curve_ehkex"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xersf"]
+curve = SubResource("Curve_ehkex")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_00tp4"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 20.0
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_xersf")
+color = Color(2.40685, 2.40685, 2.3427932, 1)
+color_ramp = SubResource("GradientTexture1D_vbegm")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5tkv4"]
+viewport_path = NodePath("LosMask")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0m0f1"]
+resource_local_to_scene = true
+shader = ExtResource("6_77dp3")
+shader_parameter/vision_tex = SubResource("ViewportTexture_5tkv4")
+shader_parameter/screen_size = Vector2(1920, 1080)
+shader_parameter/color1 = Color(0, 0, 0, 1)
+shader_parameter/is_visible = false
+
+[sub_resource type="Gradient" id="Gradient_ehkex"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xersf"]
+gradient = SubResource("Gradient_ehkex")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
+
+[sub_resource type="Curve2D" id="Curve2D_ppyta"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -78, -3, 0, 0, 0, 0, -15, -3)
+}
+point_count = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_00tp4"]
+viewport_path = NodePath("../LosMask")
+
+[node name="Node2D" type="Node2D" unique_id=2138303079]
+
+[node name="TileMapLayer" parent="." unique_id=433484697 instance=ExtResource("1_g14j6")]
+
+[node name="WallTiles" parent="." unique_id=845145522 instance=ExtResource("2_xersf")]
+material = SubResource("CanvasItemMaterial_ehkex")
+tile_map_data = PackedByteArray("AAAGAAIAAwAEAAUAAAAHAAIAAwAJAAUAAAAIAAIAAwAJAAUAAAAJAAIAAwAJAAUAAAAKAAIAAwAJAAUAAAALAAIAAwAJAAUAAAAMAAIAAwAJAAUAAAANAAIAAwAJAAUAAAAOAAIAAwAJAAUAAAAPAAIAAwAJAAUAAAAQAAIAAwAJAAUAAAARAAIAAwAJAAUAAAASAAIAAwAJAAUAAAATAAIAAwAJAAUAAAAUAAIAAwAJAAUAAAAVAAIAAwAKAAUAAAAVAAMAAwAKAAYAAAAVAAQAAwAKAAYAAAAVAAUAAwAKAAYAAAAVAAYAAwAKAAYAAAAVAAcAAwAKAAYAAAAVAAgAAwAKAAYAAAAVAAkAAwAKAAYAAAAVAAoAAwAKAAsAAAAUAAoAAwAJAAUAAAATAAoAAwAJAAUAAAASAAoAAwAJAAUAAAARAAoAAwAJAAUAAAAQAAoAAwAJAAUAAAAPAAoAAwAJAAUAAAAOAAoAAwAJAAUAAAANAAoAAwAJAAUAAAAMAAoAAwAJAAUAAAALAAoAAwAJAAUAAAAKAAoAAwAJAAUAAAAJAAoAAwAJAAUAAAAIAAoAAwAJAAUAAAAHAAoAAwAJAAUAAAAGAAoAAwAEAAsAAAAGAAsAAwAEAAwAAAAHAAsAAwAJAAYAAAAIAAsAAwAJAAYAAAAJAAsAAwAJAAYAAAAKAAsAAwAJAAYAAAALAAsAAwAJAAYAAAAMAAsAAwAJAAYAAAANAAsAAwAJAAYAAAAOAAsAAwAJAAYAAAAPAAsAAwAJAAYAAAAQAAsAAwAJAAYAAAARAAsAAwAJAAYAAAASAAsAAwAJAAYAAAATAAsAAwAJAAYAAAAUAAsAAwAJAAYAAAAVAAsAAwAKAAwAAAAUAAMAAwAKAAwAAAATAAMAAwAJAAYAAAASAAMAAwAJAAYAAAARAAMAAwAJAAYAAAAQAAMAAwAJAAYAAAAPAAMAAwAJAAYAAAAOAAMAAwAJAAYAAAANAAMAAwAJAAYAAAAMAAMAAwAJAAYAAAALAAMAAwAJAAYAAAAKAAMAAwAJAAYAAAAJAAMAAwAJAAYAAAAIAAMAAwAJAAYAAAAHAAMAAwAJAAYAAAAGAAMAAwAEAAwAAAA=")
+
+[node name="Enemy" parent="." unique_id=47530893 instance=ExtResource("3_6uqi0")]
+position = Vector2(150, 8)
+
+[node name="FogOfWar" type="Sprite2D" parent="." unique_id=1594123431]
+texture_filter = 1
+material = SubResource("ShaderMaterial_4uo0j")
+position = Vector2(576, 324)
+texture = SubResource("ViewportTexture_mhym6")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=726761317]
+environment = SubResource("Environment_xersf")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=548066759]
+color = Color(0.14406255, 0.14406255, 0.14406249, 1)
+
+[node name="CharacterBody2D" parent="." unique_id=379665007 instance=ExtResource("4_ppyta")]
+position = Vector2(62, 117)
+
+[node name="Camera2D" parent="CharacterBody2D" index="2" unique_id=1552427679]
+process_callback = 1
+position_smoothing_speed = 10.0
+
+[node name="Torches" type="Node2D" parent="." unique_id=228702001]
+material = SubResource("CanvasItemMaterial_xersf")
+position = Vector2(-683, -215)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Torches" unique_id=1082970949]
+position = Vector2(805, 240)
+process_material = SubResource("ParticleProcessMaterial_00tp4")
+script = ExtResource("5_00tp4")
+
+[node name="PointLight2D" type="PointLight2D" parent="Torches/GPUParticles2D" unique_id=1416919554]
+material = SubResource("ShaderMaterial_0m0f1")
+scale = Vector2(0.5091743, 0.5091743)
+color = Color(1, 0.6039216, 0.30980393, 1)
+energy = 1.39
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_xersf")
+height = 15.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Torches/GPUParticles2D" unique_id=151149213]
+rect = Rect2(-5, -5, 10, 10)
+
+[node name="DetectionArea" parent="Torches/GPUParticles2D" unique_id=1568310758 instance=ExtResource("7_77dp3")]
+position = Vector2(0, 8)
+
+[node name="CollisionPolygon2D" parent="Torches/GPUParticles2D/DetectionArea" index="0" unique_id=1911401436]
+visible = false
+scale = Vector2(0.99188703, 0.99188703)
+polygon = PackedVector2Array(-59, -35, 97, -37, 87, 91, -106, 88, -92, -27)
+
+[node name="RayCast1" parent="Torches/GPUParticles2D/DetectionArea" index="1" unique_id=1481978947]
+target_position = Vector2(300, 0)
+
+[node name="RayCast2" parent="Torches/GPUParticles2D/DetectionArea" index="2" unique_id=1918920125]
+target_position = Vector2(300, 0)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Torches" unique_id=2056737586]
+position = Vector2(833, 240)
+process_material = SubResource("ParticleProcessMaterial_00tp4")
+script = ExtResource("5_00tp4")
+
+[node name="PointLight2D" type="PointLight2D" parent="Torches/GPUParticles2D2" unique_id=176293215]
+material = SubResource("ShaderMaterial_0m0f1")
+scale = Vector2(0.5091743, 0.5091743)
+color = Color(1, 0.6039216, 0.30980393, 1)
+energy = 1.39
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_xersf")
+height = 15.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Torches/GPUParticles2D2" unique_id=895818652]
+rect = Rect2(-5, -5, 10, 10)
+
+[node name="DetectionArea" parent="Torches/GPUParticles2D2" unique_id=2141690421 instance=ExtResource("7_77dp3")]
+position = Vector2(0, 8)
+
+[node name="CollisionPolygon2D" parent="Torches/GPUParticles2D2/DetectionArea" index="0" unique_id=1911401436]
+visible = false
+scale = Vector2(0.99188703, 0.99188703)
+polygon = PackedVector2Array(-59, -35, 97, -37, 87, 91, -106, 88, -92, -27)
+
+[node name="RayCast1" parent="Torches/GPUParticles2D2/DetectionArea" index="1" unique_id=1481978947]
+target_position = Vector2(200, 0)
+
+[node name="RayCast2" parent="Torches/GPUParticles2D2/DetectionArea" index="2" unique_id=1918920125]
+target_position = Vector2(200, 0)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Torches" unique_id=122068408]
+position = Vector2(776, 240)
+process_material = SubResource("ParticleProcessMaterial_00tp4")
+script = ExtResource("5_00tp4")
+
+[node name="PointLight2D" type="PointLight2D" parent="Torches/GPUParticles2D3" unique_id=1708662154]
+material = SubResource("ShaderMaterial_0m0f1")
+scale = Vector2(0.5091743, 0.5091743)
+color = Color(1, 0.6039216, 0.30980393, 1)
+energy = 1.39
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_xersf")
+height = 15.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Torches/GPUParticles2D3" unique_id=1441391746]
+rect = Rect2(-5, -5, 10, 10)
+
+[node name="DetectionArea" parent="Torches/GPUParticles2D3" unique_id=530400016 instance=ExtResource("7_77dp3")]
+position = Vector2(0, 8)
+
+[node name="CollisionPolygon2D" parent="Torches/GPUParticles2D3/DetectionArea" index="0" unique_id=1911401436]
+visible = false
+scale = Vector2(0.99188703, 0.99188703)
+polygon = PackedVector2Array(-59, -35, 97, -37, 87, 91, -106, 88, -92, -27)
+
+[node name="RayCast1" parent="Torches/GPUParticles2D3/DetectionArea" index="1" unique_id=1481978947]
+target_position = Vector2(200, 0)
+
+[node name="RayCast2" parent="Torches/GPUParticles2D3/DetectionArea" index="2" unique_id=1918920125]
+target_position = Vector2(200, 0)
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Torches" unique_id=310087344]
+position = Vector2(747, 240)
+process_material = SubResource("ParticleProcessMaterial_00tp4")
+script = ExtResource("5_00tp4")
+
+[node name="PointLight2D" type="PointLight2D" parent="Torches/GPUParticles2D4" unique_id=711843111]
+material = SubResource("ShaderMaterial_0m0f1")
+scale = Vector2(0.5091743, 0.5091743)
+color = Color(1, 0.6039216, 0.30980393, 1)
+energy = 1.39
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_xersf")
+height = 15.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Torches/GPUParticles2D4" unique_id=1623050948]
+rect = Rect2(-5, -5, 10, 10)
+
+[node name="DetectionArea" parent="Torches/GPUParticles2D4" unique_id=466766210 instance=ExtResource("7_77dp3")]
+position = Vector2(0, 8)
+
+[node name="CollisionPolygon2D" parent="Torches/GPUParticles2D4/DetectionArea" index="0" unique_id=1911401436]
+visible = false
+scale = Vector2(0.99188703, 0.99188703)
+polygon = PackedVector2Array(-59, -35, 97, -37, 87, 91, -106, 88, -92, -27)
+
+[node name="RayCast1" parent="Torches/GPUParticles2D4/DetectionArea" index="1" unique_id=1481978947]
+target_position = Vector2(200, 0)
+
+[node name="RayCast2" parent="Torches/GPUParticles2D4/DetectionArea" index="2" unique_id=1918920125]
+target_position = Vector2(200, 0)
+
+[node name="Path2D" type="Path2D" parent="." unique_id=554525164]
+position = Vector2(219, 98)
+curve = SubResource("Curve2D_ppyta")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1247998998]
+position = Vector2(-78, -3)
+rotates = false
+loop = false
+
+[node name="LosMask" parent="." unique_id=443538767 instance=ExtResource("7_00tp4")]
+
+[node name="VisibilitySource" parent="LosMask" index="2" unique_id=379486646]
+energy = 2.62
+
+[node name="LoSMiniMap" parent="." unique_id=503995093 instance=ExtResource("10_5tkv4")]
+visible = true
+
+[node name="LosVisualizer" parent="LoSMiniMap" index="0" unique_id=955104085]
+texture = SubResource("ViewportTexture_00tp4")
+
+[node name="DarkSceneSubviewport" parent="." unique_id=905333313 instance=ExtResource("12_0m0f1")]
+
+[connection signal="screen_entered" from="Torches/GPUParticles2D/VisibleOnScreenNotifier2D" to="Torches/GPUParticles2D" method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="Torches/GPUParticles2D/VisibleOnScreenNotifier2D" to="Torches/GPUParticles2D" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_entered" from="Torches/GPUParticles2D2/VisibleOnScreenNotifier2D" to="Torches/GPUParticles2D2" method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="Torches/GPUParticles2D2/VisibleOnScreenNotifier2D" to="Torches/GPUParticles2D2" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_entered" from="Torches/GPUParticles2D3/VisibleOnScreenNotifier2D" to="Torches/GPUParticles2D3" method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="Torches/GPUParticles2D3/VisibleOnScreenNotifier2D" to="Torches/GPUParticles2D3" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_entered" from="Torches/GPUParticles2D4/VisibleOnScreenNotifier2D" to="Torches/GPUParticles2D4" method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="Torches/GPUParticles2D4/VisibleOnScreenNotifier2D" to="Torches/GPUParticles2D4" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+
+[editable path="CharacterBody2D"]
+[editable path="Torches/GPUParticles2D/DetectionArea"]
+[editable path="Torches/GPUParticles2D2/DetectionArea"]
+[editable path="Torches/GPUParticles2D3/DetectionArea"]
+[editable path="Torches/GPUParticles2D4/DetectionArea"]
+[editable path="LosMask"]
+[editable path="LoSMiniMap"]

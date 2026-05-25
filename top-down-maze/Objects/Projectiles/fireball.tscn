@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cllwve4cfu0wq"]
 
 [ext_resource type="PackedScene" uid="uid://dqlhcj34nj52k" path="res://Art/Effects/fireball.tscn" id="1_hgi7o"]
-[ext_resource type="Script" uid="uid://de71nlyjeo7mv" path="res://Objects/fireball.gd" id="1_kscoi"]
+[ext_resource type="Script" uid="uid://de71nlyjeo7mv" path="res://Objects/Projectiles/fireball.gd" id="1_kscoi"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hgi7o"]
 bounce = 1.0

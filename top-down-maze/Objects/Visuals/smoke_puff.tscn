@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://q8cc2ody26k8"]
 
-[ext_resource type="Script" uid="uid://dbnh8fxvw4hmf" path="res://smoke_puff.gd" id="1_tdbfk"]
+[ext_resource type="Script" uid="uid://dbnh8fxvw4hmf" path="res://Systems/Helpers/GpuParticles/particle_emitter.gd" id="1_tdbfk"]
 [ext_resource type="Texture2D" uid="uid://bmg32apuftetv" path="res://Art/Particles/star_06.png" id="2_1nrfw"]
 [ext_resource type="Texture2D" uid="uid://uvck5guyw5bw" path="res://Art/Particles/smoke_06.png" id="4_yjtws"]
 

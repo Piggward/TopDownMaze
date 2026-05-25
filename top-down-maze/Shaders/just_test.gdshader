@@ -1,4 +1,5 @@
-shader_type canvas_item;
+
+hader_type canvas_item;
 
 uniform sampler2D light_mask;
 
