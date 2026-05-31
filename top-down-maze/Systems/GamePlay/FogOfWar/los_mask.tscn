@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dcg1smef7x1bc"]
 
 [ext_resource type="Script" uid="uid://djlf5crdbnqse" path="res://Systems/GamePlay/FogOfWar/los_mask.gd" id="1_kwepq"]
-[ext_resource type="PackedScene" uid="uid://mq1jtxmv4osc" path="res://Tilemap/wall_no_normal.tscn" id="3_q5j5c"]
-[ext_resource type="PackedScene" uid="uid://c774ipl5svswp" path="res://Tilemap/floor-no-normal.tscn" id="4_kwepq"]
+[ext_resource type="PackedScene" uid="uid://bwslb5cwosvud" path="res://Tilemap/floor_tiles.tscn" id="2_2fsbh"]
+[ext_resource type="Script" uid="uid://3p5fo4xcwdr8" path="res://Tilemap/tile_texture_replacer.gd" id="3_kwepq"]
+[ext_resource type="PackedScene" uid="uid://ds5maanr8coll" path="res://Tilemap/wall_tiles.tscn" id="4_wd3px"]
 [ext_resource type="Script" uid="uid://dybx52celg4cv" path="res://Systems/Camera/camera_2d.gd" id="5_cc6li"]
 
 [sub_resource type="Gradient" id="Gradient_4ms4j"]
@@ -26,9 +27,11 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 script = ExtResource("1_kwepq")
 
-[node name="FloorNoNormal" parent="." unique_id=433484697 instance=ExtResource("4_kwepq")]
+[node name="FloorTiles" parent="." unique_id=433484697 instance=ExtResource("2_2fsbh")]
+script = ExtResource("3_kwepq")
 
-[node name="WallTilesNoNormal" parent="." unique_id=1274187663 instance=ExtResource("3_q5j5c")]
+[node name="WallTiles" parent="." unique_id=828066058 instance=ExtResource("4_wd3px")]
+script = ExtResource("3_kwepq")
 
 [node name="VisibilitySource" type="PointLight2D" parent="." unique_id=379486646]
 blend_mode = 1
